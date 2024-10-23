@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls.base import reverse
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 def index(request):
+    if request.user.is_authenticated:
+       return redirect(reverse('blog:index'))
     return render(request, 'web/base.html')
 
 
@@ -52,14 +54,11 @@ def login_view (request):
 
     return render (request, 'web/login.html',  {'login_form': login_form})
 
-@login_required
-def member_view(request):
-   return render(request, 'web/member.html')
 
 def logout_view (request):
 
-   logout(request)
-   return redirect(reverse('web:index'))
+    logout(request)
+    return redirect(reverse('web:index'))
 
 
 

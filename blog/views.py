@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import xml.etree.ElementTree as ET
 from django.contrib.auth.decorators import login_required
+from .models import ContactForm
 
 # Create your views here.
 
@@ -48,6 +49,17 @@ def index (request):
 
     #Get the Intupt from Frotend contact Form
     if request.method == 'POST':
+        text = request.POST['text'] 
+        email1 = request.POST['email'] 
+        contact_form = ContactForm(
+
+            user =  request.user,
+            email = email1,
+            message =text
+        )
+
+        contact_form.save()
+
         print('Empfangen', 'Name: ', request.POST['name'], ' Email: ', request.POST['email'], ' Text: ' , request.POST['text']) 
 
 

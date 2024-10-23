@@ -19,6 +19,29 @@ body {
     margin: 0;
 }
 
+.row {
+    display: flex; /* Aktiviert Flexbox für die Zeile */
+}
+
+#vehicleCards {
+    flex: 1; /* Nimmt den verbleibenden Platz ein */
+    display: flex;
+    flex-wrap: wrap; /* Erlaubt das Umwickeln der Karten */
+}
+
+.vehicle-card {
+    margin-bottom: 20px; /* Abstand zwischen den Fahrzeugkarten */
+    cursor: pointer; /* Zeigt an, dass die Karte anklickbar ist */
+}
+
+#detailField {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f8f9fa; /* Heller Hintergrund */
+    margin-left: 20px; /* Abstand zwischen Fahrzeugkarte und Detailfeld */
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
 .navigation {
     margin-top: 15px;
 }
@@ -46,16 +69,6 @@ body {
     text-align: center;
     margin-bottom: 30px;
     color: #007bff;
-}
-
-/* Fahrzeugkarten */
-.vehicle-card {
-    background: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: transform 0.2s;
 }
 
 .vehicle-card:hover {

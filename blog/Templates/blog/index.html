@@ -31,6 +31,48 @@
     </header>
 
     <main class="container my-5">
+
+           <!-- Vehicle Showcase Section -->
+           <div class="row mt-5" style="padding-top: 180px;">
+            <div class="col-md-8">
+                <div class="row" id="vehicleCards">
+                    {% for auto in blog_daten %}
+                    <div class="col-md-4">
+                        <div class="vehicle-card" onclick="toggleDetails(this)">
+                            <img src="{{ auto.image_url }}" class="img-fluid" alt="{{ auto.marke }}">
+                            <div class="vehicle-card-body">
+                                <h3>{{ auto.marke }} - {{ auto.bezeichnung }}</h3>
+                                <p>Leistung: {{ auto.leistung }}</p>
+                                <div class="description" style="display: none;">
+                                    <p>Drehmoment: {{ auto.drehmoment }}</p>
+                                    <p>Farbe: {{ auto.farbe }}</p>
+                                    <p>Preis: {{ auto.preis }} €</p>
+                                    <p>Baujahr: {{ auto.baujahr }}</p>
+                                    <p>Getriebe: {{ auto.getriebe }}</p>
+                                    <p>Verbrauch: {{ auto.verbrauch }}</p>
+                                    <p>Hubraum: {{ auto.hubraum }}</p>
+                                    <p>Zylinderzahl: {{ auto.zylinderzahl }}</p>
+                                    <p>Leergewicht: {{ auto.leergewicht }}</p>
+                                    <p>Höchstgeschwindigkeit: {{ auto.hoechstgeschwindigkeit }}</p>
+                                    <p>Beschleunigung 0-100: {{ auto.beschleunigung_0_100 }}</p>
+                                    <p>Erscheinungsjahr: {{ auto.erscheinungsjahr }}</p>
+                                    <p>Anzahl Türen: {{ auto.anzahl_tueren }}</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4" id="detailField" style="display: none;">
+                        <h2>Beschreibung</h2>   
+                           <p>
+                            {{ auto.beschreibung }} 
+                         </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </section>
         <!-- Do It Yourself Section -->
         <section id="diy" class="category service-section mb-5">
             <h2 class="text-center">Do It Yourself</h2>
@@ -63,36 +105,6 @@
                     <a href="#" class="btn btn-primary">Weiterlesen</a>
                 </div>
             </div>
-           <!-- Vehicle Showcase Section -->
-            <div class="row mt-5">
-               {% for auto in blog_daten %}
-                <div class="col-md-4">
-                    <div class="vehicle-card" onclick="toggleDetails(this)">
-                        <img src="{{ auto.image_url }}" class="img-fluid" alt="{{ auto.marke }}">
-                        <div class="vehicle-card-body">
-                            <h3>{{ auto.marke }} - {{ auto.bezeichnung }}</h3>
-                            <p>Leistung: {{ auto.leistung }} </p>
-                            <p>Drehmoment: {{ auto.drehmoment }} </p>
-                            <p>Farbe: {{ auto.farbe }}</p>
-                            <p>Preis: {{ auto.preis }} € </p>
-                            <p>Baujahr: {{ auto.baujahr }}</p>
-                            <p>Getriebe: {{ auto.getriebe }}</p>
-                            <p>Verbrauch: {{ auto.verbrauch }}</p>
-                            <p>Hubraum: {{ auto.hubraum }} </p>
-                            <p>Zylinderzahl: {{ auto.zylinderzahl }}</p>
-                            <p>Leergewicht: {{ auto.leergewicht }} </p>
-                            <p>Höchstgeschwindigkeit: {{ auto.hoechstgeschwindigkeit }} </p>
-                            <p>Beschleunigung 0-100: {{ auto.beschleunigung_0_100 }} </p>
-                            <p>Erscheinungsjahr: {{ auto.erscheinungsjahr }}</p>
-                            <p>Anzahl Türen: {{ auto.anzahl_tueren }}</p>
-                          <p class="description" style="display: none;">{{ auto.beschreibung }}</p>
-                      </div>
-                 </div>
-             </div>
-             {% endfor %}
-            </div>
-
-        </section>
 
         <!-- Kontakt Section -->
         <section id="kontakt" class="category service-section mb-5">
@@ -141,16 +153,36 @@
             });
 
 
-            
-            
             function toggleDetails(card) {
-                 const description = card.querySelector('.description');
-              if (description.style.display === 'none' || description.style.display === '') {
-                  description.style.display = 'block'; // Zeige die Beschreibung an
-              } else {
+                const description = card.querySelector('.description');
+                const detailField = document.getElementById('detailField');
+                const detailContent = document.getElementById('detailContent');
+                
+
+                // Alle Fahrzeugkarten ausblenden
+                const allCards = document.querySelectorAll('.vehicle-card');
+                allCards.forEach(function(otherCard) {
+                    if ((otherCard !== card) & (otherCard.style.display === card.style.display)) {
+                        otherCard.style.display = 'none'; // Blende die anderen Karten aus
+                    }else{
+
+                        otherCard.style.display =  card.style.display;
+
+                    }
+                });
+
+                // Wenn die Beschreibung ausgeblendet ist, zeige sie an und fülle das Detailfeld
+                if (description.style.display === 'none' || description.style.display === '') {
+                    // Zeige die Beschreibung unter dem Fahrzeug an
+                    description.style.display = 'block'; // Zeige die Beschreibung an
+                    detailField.style.display = 'block'; // Zeige das Detailfeld an
+                    detailContent.innerHTML = description.innerHTML; // Fülle das Detailfeld mit der Beschreibung
+                } else {
                     description.style.display = 'none'; // Blende die Beschreibung aus
+                    detailField.style.display = 'none'; // Blende das Detailfeld aus
+
                 }
-              }
+            }
             
             </script>
 
