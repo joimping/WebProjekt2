@@ -32,6 +32,8 @@ def index (request):
         auto_daten['preis'] = technische_details.find('Preis').text    # neues Attribut
         auto_daten['baujahr'] = technische_details.find('Baujahr').text  # neues Attribut
         auto_daten['image_url'] = technische_details.find('image_url').text
+        auto_daten['beschreibung'] = technische_details.find('beschreibung').text
+
         blog_daten.append(auto_daten)
 
     for a in blog_daten:

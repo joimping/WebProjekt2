@@ -23,6 +23,7 @@
             <Preis>200000</Preis> 
             <Baujahr>2020</Baujahr> 
             <image_url>\static\img\porsche.jpg</image_url>
+            <beschreibung>xyz</beschreibung>
         </Technische_Details>
     </Auto>
 
@@ -46,7 +47,58 @@
             <Preis>200000</Preis> 
             <Baujahr>2020</Baujahr> 
             <image_url>\static\img\mercedes.jpg</image_url>
+            <beschreibung>xyz</beschreibung>
         </Technische_Details>
     </Auto>
+
+    <Auto>
+        <Automarke>BMW</Automarke>
+        <Autobezeichnung>M4 Competition</Autobezeichnung>
+        <Technische_Details>
+            <Leistung>510PS</Leistung>
+            <max_Drehmomemt>650Nm</max_Drehmomemt>
+            <Hubraum>2993 cm³</Hubraum>
+            <Zylinderzahl>6</Zylinderzahl>
+            <Verbrauch>10.5 l/100km</Verbrauch>
+            <Getriebe>Automatik</Getriebe>
+            <Leergewicht>1710 kg</Leergewicht>
+            <Hoechstgeschwindigkeit>290 km/h</Hoechstgeschwindigkeit>
+            <Beschleunigung_0_100>3.9 Sekunden</Beschleunigung_0_100>
+            <Erscheinungsjahr>2022</Erscheinungsjahr>
+            <Anzahl_tueren>4</Anzahl_tueren>
+            <Farbe>Weiss</Farbe>
+            <Preis>150000</Preis>
+            <Baujahr>2022</Baujahr>
+            <image_url>\static\img\bmw.jpg</image_url>
+            <beschreibung>xyz</beschreibung>
+        </Technische_Details>
+    </Auto>
+
+        <Auto>
+        <Automarke>Audi</Automarke>
+        <Autobezeichnung>R8 V10</Autobezeichnung>
+        <Technische_Details>
+            <Leistung>620PS</Leistung>
+            <max_Drehmomemt>580Nm</max_Drehmomemt>
+            <Hubraum>5204 cm³</Hubraum>
+            <Zylinderzahl>10</Zylinderzahl>
+            <Verbrauch>12.3 l/100km</Verbrauch>
+            <Getriebe>Automatik</Getriebe>
+            <Leergewicht>1540 kg</Leergewicht>
+            <Hoechstgeschwindigkeit>330 km/h</Hoechstgeschwindigkeit>
+            <Beschleunigung_0_100>3.2 Sekunden</Beschleunigung_0_100>
+            <Erscheinungsjahr>2021</Erscheinungsjahr>
+            <Anzahl_tueren>2</Anzahl_tueren>
+            <Farbe>Schwarz</Farbe>
+            <Preis>200000</Preis>
+            <Baujahr>2021</Baujahr>
+            <image_url>\static\img\audi.jpg</image_url>
+            <beschreibung>xyz</beschreibung>
+        </Technische_Details>
+    </Auto>
+
+
+
+    
 
 </Bezeichnung>
