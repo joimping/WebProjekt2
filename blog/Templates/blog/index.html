@@ -70,9 +70,21 @@
                     <div class="vehicle-card" onclick="toggleDetails(this)">
                         <img src="{{ auto.image_url }}" class="img-fluid" alt="{{ auto.marke }}">
                         <div class="vehicle-card-body">
-                            <h3>{{ auto.marke }}</h3>
-                            <p>Modell: {{ auto.modell }} | {{ auto.drehmoment }} Nm | {{ auto.leistung }} PS | {{ auto.transmission }}</p>
-                         <p class="price">{{ auto.price }}€</p>
+                            <h3>{{ auto.marke }} - {{ auto.bezeichnung }}</h3>
+                            <p>Leistung: {{ auto.leistung }} PS</p>
+                            <p>Drehmoment: {{ auto.drehmoment }} Nm</p>
+                            <p>Farbe: {{ auto.farbe }}</p>
+                            <p>Preis: {{ auto.preis }} €</p>
+                            <p>Baujahr: {{ auto.baujahr }}</p>
+                            <p>Getriebe: {{ auto.getriebe }}</p>
+                            <p>Verbrauch: {{ auto.verbrauch }}</p>
+                            <p>Hubraum: {{ auto.hubraum }} cm³</p>
+                            <p>Zylinderzahl: {{ auto.zylinderzahl }}</p>
+                            <p>Leergewicht: {{ auto.leergewicht }} kg</p>
+                            <p>Höchstgeschwindigkeit: {{ auto.hoechstgeschwindigkeit }} km/h</p>
+                            <p>Beschleunigung 0-100: {{ auto.beschleunigung_0_100 }} Sekunden</p>
+                            <p>Erscheinungsjahr: {{ auto.erscheinungsjahr }}</p>
+                            <p>Anzahl Türen: {{ auto.anzahl_tueren }}</p>
                           <p class="description" style="display: none;">{{ auto.description }}</p>
                       </div>
                  </div>

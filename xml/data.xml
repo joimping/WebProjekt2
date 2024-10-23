@@ -1,19 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Auto xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:noNamespaceSchemaLocation="fahrzeug.xsd">
-  
-    <Automarke>BMW</Automarke>
-    <Autobezeichnung>M3</Autobezeichnung>
-    <Leistung>430 PS</Leistung>
-    <max_Drehmoment>550 Nm</max_Drehmoment>
-    <Hubraum>2993 cm³</Hubraum>
-    <Zylinderzahl>6</Zylinderzahl>
-    <Verbrauch>8.3 l/100km</Verbrauch>
-    <Getriebe>Automatik</Getriebe>
-    <Leergewicht>1585 kg</Leergewicht>
-    <Hoechstgeschwindigkeit>250 km/h</Hoechstgeschwindigkeit>
-    <Beschleunigung_0_100>4.1 Sekunden</Beschleunigung_0_100>
-    <Erscheinungsjahr>2020</Erscheinungsjahr>
-    <Anzahl_tueren>4</Anzahl_tueren>
+<?xml version="1.0" encoding="utf-8" ?>
 
-</Auto>
+<Bezeichnung>
+
+    <Auto >
+        <Automarke>Porsche</Automarke>
+        <Autobezeichnung>911 GT3</Autobezeichnung>
+        <Automarke>Porsche</Automarke>
+        <Autobezeichnung>911 GT3</Autobezeichnung>
+        <Technische_Details>
+            <Leistung>640PS</Leistung>
+            <max_Drehmomemt>850Nm</max_Drehmomemt>
+            <Hubraum>2993 cm³</Hubraum>
+            <Zylinderzahl>6</Zylinderzahl>
+            <Verbrauch>8.3 l/100km</Verbrauch>
+            <Getriebe>Automatik</Getriebe>
+            <Leergewicht>1585 kg</Leergewicht>
+            <Hoechstgeschwindigkeit>250 km/h</Hoechstgeschwindigkeit>
+            <Beschleunigung_0_100>4.1 Sekunden</Beschleunigung_0_100>
+            <Erscheinungsjahr>2020</Erscheinungsjahr>
+            <Anzahl_tueren>4</Anzahl_tueren>
+            <Farbe>Rot</Farbe>
+            <Preis>200000</Preis> 
+            <Baujahr>2020</Baujahr> 
+            <image_url>\static\img\porsche.jpg</image_url>
+        </Technische_Details>
+    </Auto>
+
+    <Auto>
+        <Automarke>Mercedes</Automarke>
+        <Autobezeichnung>G Klasse</Autobezeichnung>
+
+        <Technische_Details>
+           <Leistung>640PS</Leistung>
+            <max_Drehmomemt>850Nm</max_Drehmomemt>
+            <Hubraum>2993 cm³</Hubraum>
+            <Zylinderzahl>6</Zylinderzahl>
+            <Verbrauch>8.3 l/100km</Verbrauch>
+            <Getriebe>Automatik</Getriebe>
+            <Leergewicht>1585 kg</Leergewicht>
+            <Hoechstgeschwindigkeit>250 km/h</Hoechstgeschwindigkeit>
+            <Beschleunigung_0_100>4.1 Sekunden</Beschleunigung_0_100>
+            <Erscheinungsjahr>2020</Erscheinungsjahr>
+            <Anzahl_tueren>4</Anzahl_tueren>
+            <Farbe>Rot</Farbe>
+            <Preis>200000</Preis> 
+            <Baujahr>2020</Baujahr> 
+            <image_url>\static\img\mercedes.jpg</image_url>
+        </Technische_Details>
+    </Auto>
+
+</Bezeichnung>
