@@ -5,6 +5,7 @@
 {% block authForm %}
 
  <form method="post" action="">
+   {% csrf_token %}
 
     {{ register_form.as_p }}
 

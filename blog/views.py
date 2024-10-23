@@ -1,8 +1,11 @@
 from django.shortcuts import render
 import xml.etree.ElementTree as ET
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+@login_required
 def index (request): 
 
     # XML-Datei parsen

@@ -1,0 +1,23 @@
+from django import forms
+from django.contrib.auth.models import User
+
+class RegisterForm(forms.Form):
+    username = forms.CharField(max_length=35, label='Username eintragen')
+    email = forms.EmailField(label='Email eintragen')
+    password = forms.CharField(min_length=6, max_length=50, label='Passwort eintragen', widget=forms.PasswordInput)
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError("Diesen Username gibt es schon")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError('Diese Email gibt es schon')
+        return email
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=35, label='Username eintragen')
+    password = forms.CharField(min_length=6, max_length=50, label="Passwort eintragen", widget=forms.PasswordInput)
