@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    {% load static  %} <!-- Load static files -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/Autblog.css"> <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'css/Autblog.css' %}"> <!-- External CSS -->
+
     <title>Käpsele Autoblog</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
             <h2 class="text-center">Do It Yourself</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../static/img/Kühlwasser.jpg" class="img-fluid" alt="Kühlwasser nachfüllen">
+                    <img src="{% static 'img/Kühlwasser.jpg' %}" class="img-fluid" alt="Kühlwasser nachfüllen">
                 </div>
                 <div class="col-md-6">
                     <h3>Kühlwasser nachfüllen: So geht's!</h3>
@@ -51,7 +53,7 @@
             <h2 class="text-center">Autonews</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../static/img/Christmas.jpg" class="img-fluid" alt="Weihnachtsgruß">
+                    <img src="{% static 'img/Christmas.jpg' %}" class="img-fluid" alt="Weihnachtsgruß">
                 </div>
                 <div class="col-md-6">
                     <h3>Nur die besten Weihnachtswünsche für Dich!</h3>
@@ -61,42 +63,33 @@
                     <a href="#" class="btn btn-primary">Weiterlesen</a>
                 </div>
             </div>
-            <!-- Vehicle Showcase Section -->
+           <!-- Vehicle Showcase Section -->
             <div class="row mt-5">
+               {% for auto in blog_daten %}
                 <div class="col-md-4">
-                    <div class="vehicle-card">
-                        <img src="bmw.jpg" alt="BMW 6er Gran Coupé">
+                    <div class="vehicle-card" onclick="toggleDetails(this)">
+                        <img src="{{ auto.image_url }}" class="img-fluid" alt="{{ auto.marke }}">
                         <div class="vehicle-card-body">
-                            <h3>BMW 6er Gran Coupé</h3>
-                            <p>Modell: 2017 | 3100 Meilen | 240 PS | Automatisch</p>
-                            <p class="price">89.395 USD</p>
-                            <p>Ich weiß nicht, was es ist, was ich tue, wenn ich nicht weiß, was ich tue, ich werde es tun, ich werde es nicht tun.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="vehicle-card">
-                        <img src="../static/img/camaro.jpg" alt="Chevrolet Camaro WMV20">
-                        <div class="vehicle-card-body">
-                            <h3>Chevrolet Camaro WMV20</h3>
-                            <p>Modell: 2017 | 3100 Meilen | 240 PS | Automatisch</p>
-                            <p class="price">66.575 USD</p>
-                            <p>Ich weiß nicht, was es ist, was ich tue, wenn ich nicht weiß, was ich tue, ich werde es tun, ich werde es nicht tun.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="vehicle-card">
-                        <img src="../static/img/lamborghini.jpg" alt="Lamborghini V520">
-                        <div class="vehicle-card-body">
-                            <h3>Lamborghini V520</h3>
-                            <p>Modell: 2017 | 3100 Meilen | 240 PS | Automatisch</p>
-                            <p class="price">125.250 USD</p>
-                            <p>Ich weiß nicht, was es ist, was ich tue, wenn ich nicht weiß, was ich tue, ich werde es tun, ich werde es nicht tun.</p>
-                        </div>
-                    </div>
-                </div>
+                            <h3>{{ auto.marke }}</h3>
+                            <p>Modell: {{ auto.modell }} | {{ auto.drehmoment }} Nm | {{ auto.leistung }} PS | {{ auto.transmission }}</p>
+                         <p class="price">{{ auto.price }}€</p>
+                          <p class="description" style="display: none;">{{ auto.description }}</p>
+                      </div>
+                 </div>
+             </div>
+             {% endfor %}
             </div>
+
+            <script>
+             function toggleDetails(card) {
+                  const description = card.querySelector('.description');
+                  if (description.style.display === 'none' || description.style.display === '') {
+                      description.style.display = 'block'; // Zeige die Beschreibung an
+                  } else {
+                     description.style.display = 'none'; // Blende die Beschreibung aus
+                  }
+              }
+            </script>
         </section>
 
         <!-- Kontakt Section -->
@@ -104,21 +97,47 @@
             <h2 class="text-center">Kontakt</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../static/img/Kontakt.jpg" class="img-fluid" alt="Kontakt aufnehmen">
+                    <img src="{% static 'img/Kontakt.jpg' %}" class="img-fluid" alt="Kontakt aufnehmen">
                 </div>
                 <div class="col-md-6">
                     <h3>Kontaktiere uns: So geht's!</h3>
                     <p>
                         Haben Sie Fragen zu unseren Artikeln oder brauchen Sie Hilfe bei der Pflege Ihres Fahrzeugs? Wir sind hier, um Ihnen zu helfen! Füllen Sie einfach das Kontaktformular aus oder besuchen Sie uns während unserer Öffnungszeiten. Unser Team von Experten freut sich darauf, Ihnen mit nützlichen Informationen zur Seite zu stehen und Ihre Fragen zu beantworten.
                     </p>
-                    <form action="" method="post">
+                    <form id="contactForm" action="" method="post">
+                        {% csrf_token %}
                         <input type="text" name="name" placeholder="Ihr Name" required>
-                        <input type="password" name="password" placeholder="Ihr Passwort" required>
                         <input type="email" name="email" placeholder="Ihre E-Mail" required>
-                        <input type="submit" name="submit" class="btn btn-primary mt-2">
+                        <input type="text" name="text" placeholder="Ihre Nachricht" required>
+                        <input type="submit" name="submit" class="btn btn-primary mt-2" onclick="addItem()">
                     </form>
                 </div>
             </div>
+
+            <script>
+                  document.getElementById('contactForm').addEventListener('submit', function(event) {
+                             event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+
+                 let formData = new FormData(this); // 'this' bezieht sich auf das Formular
+
+                 fetch('/blog/', {
+                    method: 'POST',
+                    body: formData
+                  })
+              .then(response => {
+                if (response.ok) {
+                    console.log('Formular erfolgreich gesendet');
+                } else {
+                 console.error('Fehler beim Senden des Formulars');
+                }
+                })
+               .catch(error => {
+                   console.error('Fehler:', error);
+               });
+
+
+            });
+            </script>
 
             <!-- Google Map Section -->
             <div class="row mt-5">
@@ -144,7 +163,7 @@
             <h2 class="text-center">Über uns</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="../static/img/Umut Bild.JPG" class="img-fluid" alt="Umut Polat">
+                    <img src="{% static 'img/Umut Bild.jpg' %}" class="img-fluid" alt="Umut Polat">
                 </div>
                 <div class="col-md-6">
                     <h3>Über uns!</h3>

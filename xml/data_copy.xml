@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Bezeichnung>
+
+    <Auto >
+        <Automarke>Porsche</Automarke>
+        <Autobezeichnung>911 GT3</Autobezeichnung>
+
+        <Technische_Details>
+            <Leistung>640PS</Leistung>
+            <max_Drehmomemt>850Nm</max_Drehmomemt>
+            <image_url>\static\img\porsche.jpg</image_url>
+        </Technische_Details>
+    </Auto>
+
+    <Auto>
+        <Automarke>Mercedes</Automarke>
+        <Autobezeichnung>G Klasse</Autobezeichnung>
+
+        <Technische_Details>
+            <Leistung>640PS</Leistung>
+            <max_Drehmomemt>850Nm</max_Drehmomemt>
+            <image_url>\static\img\mercedes.jpg</image_url>
+        </Technische_Details>
+    </Auto>
+
+</Bezeichnung>
