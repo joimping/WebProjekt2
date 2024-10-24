@@ -2,7 +2,7 @@ from django.shortcuts import render
 import xml.etree.ElementTree as ET
 from django.contrib.auth.decorators import login_required
 from .models import ContactForm, Comment
-from .forms import CommentForm
+from .forms import CommentForm as cf
 
 
 # Create your views here.
@@ -66,12 +66,13 @@ def index (request):
      #   print('Empfangen', 'Name: ', request.POST['name'], ' Email: ', request.POST['email'], ' Text: ' , request.POST['text']) 
 
 
-    comment_form = CommentForm()
+    comment_form = cf()
     if request.method == 'POST' and  'submit_comment' in request.POST:
-        comment_form = CommentForm(request.POST)
+        comment_form = cf(request.POST)
         if comment_form.is_valid():
-            comment_form.user = request.user
-            comment_form.save()
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.save()
 
 
     comments = Comment.objects.filter(user=request.user)

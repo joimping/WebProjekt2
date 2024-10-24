@@ -8,7 +8,7 @@
 
     {{ comment_form }}
 
-    <input type="submit" name="submit_comment" class="btn btn-primary mt-2" >
+    <input type="submit" name="submit_comment" class="btn btn-primary mt-2" onclick="clearField(this)" >
     
 </form>
 
@@ -17,8 +17,11 @@
     <p>
 
         {{ post.user }}
-        {{ post.date }}
-        {{ post.message }}
+        commented "
+        {{ post.message }} "
+        at
+        {{ post.created_at }}
+        <hl></hl>
 
     </p>
 
