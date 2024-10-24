@@ -42,13 +42,6 @@ def index (request):
 
         blog_daten.append(auto_daten)
 
-    for a in blog_daten:
-        print(a ['marke']) 
-        print(a ['bezeichnung'])
-        print(a ['leistung'])
-        print(a ['drehmoment'])  
-        print('')
-
     #Get the Intupt from Frotend contact Form
     if request.method == 'POST' and  'submit_contact' in request.POST:
 
@@ -75,7 +68,7 @@ def index (request):
             comment.save()
 
 
-    comments = Comment.objects.filter(user=request.user)
+    comments = Comment.objects.all()
 
 
     return render(request, 'blog/index.html',  {'blog_daten': blog_daten, 'comments': comments, 'comment_form': comment_form})
