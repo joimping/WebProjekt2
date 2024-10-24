@@ -1,7 +1,9 @@
 from django.shortcuts import render
 import xml.etree.ElementTree as ET
 from django.contrib.auth.decorators import login_required
-from .models import ContactForm
+from .models import ContactForm, Comment
+from .forms import CommentForm
+
 
 # Create your views here.
 
@@ -48,7 +50,8 @@ def index (request):
         print('')
 
     #Get the Intupt from Frotend contact Form
-    if request.method == 'POST':
+    if request.method == 'POST' and  'submit_contact' in request.POST:
+
         text = request.POST['text'] 
         email1 = request.POST['email'] 
         contact_form = ContactForm(
@@ -60,7 +63,18 @@ def index (request):
 
         contact_form.save()
 
-        print('Empfangen', 'Name: ', request.POST['name'], ' Email: ', request.POST['email'], ' Text: ' , request.POST['text']) 
+     #   print('Empfangen', 'Name: ', request.POST['name'], ' Email: ', request.POST['email'], ' Text: ' , request.POST['text']) 
 
 
-    return render(request, 'blog/index.html',  {'blog_daten': blog_daten})
+    comment_form = CommentForm()
+    if request.method == 'POST' and  'submit_comment' in request.POST:
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.user = request.user
+            comment_form.save()
+
+
+    comments = Comment.objects.filter(user=request.user)
+
+
+    return render(request, 'blog/index.html',  {'blog_daten': blog_daten, 'comments': comments, 'comment_form': comment_form})

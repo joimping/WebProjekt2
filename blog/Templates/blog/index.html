@@ -73,6 +73,12 @@
             </div>
         </div>
         </section>
+        <hr>
+        <!-- Comment Section -->
+        <section>
+            {% include 'blog/commentsection.html' %}
+        </section>
+        <hr>
         <!-- Do It Yourself Section -->
         <section id="diy" class="category service-section mb-5">
             <h2 class="text-center">Do It Yourself</h2>
@@ -123,7 +129,7 @@
                         <input type="text" name="name" placeholder="Ihr Name" required>
                         <input type="email" name="email" placeholder="Ihre E-Mail" required>
                         <input type="text" name="text" placeholder="Ihre Nachricht" required>
-                        <input type="submit" name="submit" class="btn btn-primary mt-2" onclick="addItem()">
+                        <input type="submit" name="submit_contact" class="btn btn-primary mt-2" onclick="addItem()">
                     </form>
                 </div>
             </div>

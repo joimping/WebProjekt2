@@ -1,0 +1,27 @@
+
+
+
+{% block CommentSection %}
+
+<form action="{%  url 'blog:index' %}" method="post">
+    {% csrf_token %}
+
+    {{ comment_form }}
+
+    <input type="submit" name="submit_comment" class="btn btn-primary mt-2" >
+    
+</form>
+
+{% for post in comments %}
+
+    <p>
+
+        {{ post.user }}
+        {{ post.date }}
+        {{ post.message }}
+
+    </p>
+
+{% endfor %}
+
+{% endblock %}

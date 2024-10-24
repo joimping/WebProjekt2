@@ -9,3 +9,9 @@ class ContactForm (models.Model):
     email = models.EmailField(max_length=250, default=" ")
     created_at = models.DateTimeField(default=timezone.now)
 
+
+class Comment (models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length=250)
+    created_at = models.DateTimeField(default=timezone.now)
+
