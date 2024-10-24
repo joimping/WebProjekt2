@@ -135,28 +135,34 @@
             </div>
 
             <script>
-                  document.getElementById('contactForm').addEventListener('submit', function(event) {
-                             event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+                document.getElementById('contactForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); 
 
-                 let formData = new FormData(this); 
-
-                 fetch('/blog/', {
-                    method: 'POST',
-                    body: formData
-                  })
-              .then(response => {
-                if (response.ok) {
-                    console.log('Formular erfolgreich gesendet');
-                } else {
-                 console.error('Fehler beim Senden des Formulars');
-                }
-                })
-               .catch(error => {
-                   console.error('Fehler:', error);
-               });
+                    const email = this.email.value;
+                    const text = this.text.value;
 
 
-            });
+                    fetch('/blog/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: '{"email":"' + email + '", "text":"' + text + '"}'  //JSON-Format
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Network response was not ok.');
+                    })
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                });
+
 
             function clearField(field){
                 document.field.value = '';

@@ -1,13 +1,16 @@
+import json
 from django.shortcuts import render
 import xml.etree.ElementTree as ET
 from django.contrib.auth.decorators import login_required
 from .models import ContactForm, Comment
 from .forms import CommentForm as cf
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
 
-
+@csrf_exempt
 @login_required
 def index (request): 
 
@@ -43,10 +46,14 @@ def index (request):
         blog_daten.append(auto_daten)
 
     #Get the Intupt from Frotend contact Form
-    if request.method == 'POST' and  'submit_contact' in request.POST:
+    if request.method == 'POST' and  request.content_type == 'application/json':  
+        
+        # JSON-Daten aus der Anfrage lesen
+        daten = json.loads(request.body)
+        email1 = daten.get('email')
+        text = daten.get('text')
 
-        text = request.POST['text'] 
-        email1 = request.POST['email'] 
+
         contact_form = ContactForm(
 
             user =  request.user,
@@ -56,11 +63,9 @@ def index (request):
 
         contact_form.save()
 
-     #   print('Empfangen', 'Name: ', request.POST['name'], ' Email: ', request.POST['email'], ' Text: ' , request.POST['text']) 
-
 
     comment_form = cf()
-    if request.method == 'POST' and  'submit_comment' in request.POST:
+    if request.method == 'POST' and  'submit_comment' in request.POST and not request.content_type == 'application/json':
         comment_form = cf(request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
